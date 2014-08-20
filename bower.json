@@ -1,0 +1,57 @@
+{
+  "name": "minnpost-state-fair-bingo",
+  "version": "0.0.0",
+  "main": "index.html",
+  "homepage": "https://github.com/minnpost/minnpost-state-fair-bingo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minnpost/minnpost-state-fair-bingo"
+  },
+  "bugs": "https://github.com/minnpost/minnpost-state-fair-bingo/issues",
+  "license": "MIT",
+  "author": {
+    "name": "MinnPost",
+    "email": "data@minnpost.com"
+  },
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "almond": "~0.2.9",
+    "text": "~2.0.12",
+    "underscore": "~1.6.0",
+    "jquery": "~1.11.0"
+  },
+  "dependencyMap": {
+    "requirejs": {
+      "rname": "requirejs",
+      "js": [
+        "requirejs/require"
+      ]
+    },
+    "almond": {
+      "rname": "almond",
+      "js": [
+        "almond/almond"
+      ]
+    },
+    "text": {
+      "rname": "text",
+      "js": [
+        "text/text"
+      ]
+    },
+    "jquery": {
+      "rname": "jquery",
+      "js": [
+        "jquery/dist/jquery"
+      ],
+      "returns": "$"
+    },
+    "underscore": {
+      "rname": "underscore",
+      "js": [
+        "underscore/underscore"
+      ],
+      "returns": "_"
+    }
+  }
+}

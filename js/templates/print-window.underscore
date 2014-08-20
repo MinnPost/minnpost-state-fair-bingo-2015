@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>Temporary Printing Window</title>
+
+  <script>
+    function step1() {
+      setTimeout('step2()', 100);
+    }
+    function step2() {
+      window.print();
+      window.close();
+    }
+  </script>
+</head>
+<body onLoad="step1()">
+  <img src="<%= card %>"/>
+</body>
+</html>

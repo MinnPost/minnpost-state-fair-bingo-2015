@@ -1,0 +1,23 @@
+<div class="application-container">
+  <div class="message-container"></div>
+
+  <div class="content-container">
+
+    <div class="pick">
+      <a class="refresh" href="#">Pick another bingo card</a>
+      <a class="print" href="#">Print</a>
+    </div>
+
+    <div class="card">
+      <img src="<%= card %>" />
+    </div>
+
+  </div>
+
+  <div class="footnote-container">
+    <div class="footnote">
+      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo" target="_blank">Github</a>.</p>
+
+    </div>
+  </div>
+</div>
