@@ -28,11 +28,23 @@ define('minnpost-state-fair-bingo', [
     // Start function
     start: function() {
       var thisApp = this;
+
+      // Add (absolute) paths to cards
+      this.options.cards = _.map(this.options.cards, function(c, ci) {
+        c = thisApp.options.paths.images + c;
+        if (c.indexOf('http') !== 0 && c.indexOf('//') !== 0) {
+          c = window.location.origin + window.location.pathname + c;
+        }
+        return c;
+      });
+
+      // Get initial card
       this.card = this.newCard();
 
       // Create main application view
       this.$el.html(_.template(tApplication, {
-        card: this.card
+        card: this.card,
+        options: this.options
       }));
 
       // Switch out
@@ -51,14 +63,19 @@ define('minnpost-state-fair-bingo', [
     // Get new card
     newCard: function() {
       var card;
-      var oldCard = this.card;
+      var oldCard = this.card || this.options.cards[0];
 
-      do {
-        card = _.sample(this.options.cards);
+      if (this.options.cards.length > 1) {
+        do {
+          card = _.sample(this.options.cards);
+        }
+        while (card === oldCard);
       }
-      while (card === oldCard);
+      else {
+        card = oldCard;
+      }
 
-      this.card = card;
+      this.card =  card;
       return card;
     },
 
@@ -77,11 +94,8 @@ define('minnpost-state-fair-bingo', [
     defaultOptions: {
       projectName: 'minnpost-state-fair-bingo',
       cards: [
-        'http://fillmurray.com/g/990/800',
-        'http://fillmurray.com/g/991/800',
-        'http://fillmurray.com/g/992/800',
-        'http://fillmurray.com/g/993/800',
-        'http://fillmurray.com/g/994/800'
+        'minnpost-state-fair-bingo-card-01.png',
+        'minnpost-state-fair-bingo-card-02.png'
       ],
       remoteProxy: null,
       el: '.minnpost-state-fair-bingo-container',

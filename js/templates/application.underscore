@@ -4,8 +4,8 @@
   <div class="content-container">
 
     <div class="pick">
-      <a class="refresh" href="#">Pick another bingo card</a>
-      <a class="print" href="#">Print</a>
+      <button class="refresh button primary large" title="Pick another Bingo card."><i class="fa fa-refresh"></i></button>
+      <button class="print button primary large" title="Print out card."><i class="fa fa-print"></i></button>
     </div>
 
     <div class="card">

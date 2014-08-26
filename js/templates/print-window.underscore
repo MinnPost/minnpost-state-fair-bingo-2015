@@ -11,6 +11,22 @@
       window.close();
     }
   </script>
+
+  <style>
+    * { margin: 0 !important; padding: 0 !important; }
+    html, body {
+      height:100%;
+      overflow: hidden;
+      background: #FFF;
+      font-size: 9.5pt;
+    }
+    img {
+      display: block;
+      max-width: 99%;
+      max-height: 99%;
+      margin: 0 auto !important;
+    }
+  </style>
 </head>
 <body onLoad="step1()">
   <img src="<%= card %>"/>

@@ -1,6 +1,6 @@
 # Minnpost State Fair Bingo
 
-State Fair Bingo!
+State Fair Bingo!  Drawings by Andy Sturdevant; compiled by Kaeti Hinck.
 
 You can see this project in action at *[published story link goes here]()*.
 

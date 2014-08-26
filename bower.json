@@ -18,7 +18,8 @@
     "almond": "~0.2.9",
     "text": "~2.0.12",
     "underscore": "~1.6.0",
-    "jquery": "~1.11.0"
+    "jquery": "~1.11.0",
+    "minnpost-styles": "master"
   },
   "dependencyMap": {
     "requirejs": {
@@ -52,6 +53,16 @@
         "underscore/underscore"
       ],
       "returns": "_"
+    },
+    "minnpost-styles": {
+      "rname": "mpStyles",
+      "css": [
+        "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css",
+        "minnpost-styles/dist/minnpost-styles"
+      ],
+      "sass": [
+        "minnpost-styles/styles/main"
+      ]
     }
   }
 }
