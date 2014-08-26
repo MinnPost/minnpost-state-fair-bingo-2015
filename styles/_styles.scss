@@ -35,5 +35,9 @@ body .node-unpublished {
 
   // Custom breakpoints
   @media screen and (max-width: 768px) {
+
+    .card {
+      min-height: 300px;
+    }
   }
 }
