@@ -90,6 +90,9 @@ define('minnpost-state-fair-bingo', [
     newCard: function() {
       var card;
       var oldCard = this.card || this.options.cards[0];
+      // iOS has a hard image size limit
+      var extension = (this.options.capabilities.cannotLoadLargeImages) ?
+        '-small.png' : '.png';
 
       if (this.options.cards.length > 1) {
         do {
@@ -101,7 +104,8 @@ define('minnpost-state-fair-bingo', [
         card = oldCard;
       }
 
-      this.card =  card;
+      card = card + extension;
+      this.card = card;
       return card;
     },
 
@@ -120,13 +124,17 @@ define('minnpost-state-fair-bingo', [
     defaultOptions: {
       projectName: 'minnpost-state-fair-bingo',
       cards: [
-        'minnpost-state-fair-bingo-card-01.png',
-        'minnpost-state-fair-bingo-card-02.png',
-        'minnpost-state-fair-bingo-card-03.png',
-        'minnpost-state-fair-bingo-card-04.png'
+        'minnpost-state-fair-bingo-card-01',
+        'minnpost-state-fair-bingo-card-02',
+        'minnpost-state-fair-bingo-card-03',
+        'minnpost-state-fair-bingo-card-04'
       ],
       remoteProxy: null,
       el: '.minnpost-state-fair-bingo-container',
+      capabilities: {
+        cannotLoadLargeImages: _.isObject(navigator) ?
+          /(iPad|iPhone|iPod)/g.test(navigator.userAgent) : false
+      },
       availablePaths: {
         local: {
           css: ['.tmp/css/main.css'],

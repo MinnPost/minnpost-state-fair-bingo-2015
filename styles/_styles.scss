@@ -23,6 +23,11 @@ body .node-unpublished {
   .card {
     min-height: 1300px;
     margin-bottom: 3em;
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   .caption {
