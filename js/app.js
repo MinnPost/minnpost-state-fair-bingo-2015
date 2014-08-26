@@ -116,7 +116,8 @@ define('minnpost-state-fair-bingo', [
       cards: [
         'minnpost-state-fair-bingo-card-01.png',
         'minnpost-state-fair-bingo-card-02.png',
-        'minnpost-state-fair-bingo-card-03.png'
+        'minnpost-state-fair-bingo-card-03.png',
+        'minnpost-state-fair-bingo-card-04.png'
       ],
       remoteProxy: null,
       el: '.minnpost-state-fair-bingo-container',
