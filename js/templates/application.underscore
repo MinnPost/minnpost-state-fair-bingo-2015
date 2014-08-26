@@ -16,6 +16,8 @@
       <img src="<%= card %>" />
     </div>
 
+    <p class="caption">If you are having trouble printing using the button above, <a class="manual-print" href="<%= card %>" target="_blank">open the bingo card</a> in a separate window and print from there.</p>
+
   </div>
 
   <div class="footnote-container">

@@ -34,9 +34,11 @@ define('minnpost-state-fair-bingo', [
 
       // Add (absolute) paths to cards
       this.options.cards = _.map(this.options.cards, function(c, ci) {
+        var path = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
         c = thisApp.options.paths.images + c;
         if (c.indexOf('http') !== 0 && c.indexOf('//') !== 0) {
-          c = window.location.origin + window.location.pathname + c;
+          c = path + c;
         }
         return c;
       });
@@ -58,6 +60,7 @@ define('minnpost-state-fair-bingo', [
         e.preventDefault();
         thisApp.readyImageLoad();
         thisApp.$('.card img').fadeOut().attr('src', thisApp.newCard());
+        thisApp.$('.manual-print').attr('href', thisApp.$('.card img').attr('src'));
         thisApp.imageLoaded();
       });
 
