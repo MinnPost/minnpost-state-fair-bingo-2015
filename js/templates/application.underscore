@@ -9,6 +9,10 @@
     </div>
 
     <div class="card">
+      <div class="loading-container">
+        <i class="loading"></i> Loading...
+      </div>
+
       <img src="<%= card %>" />
     </div>
 

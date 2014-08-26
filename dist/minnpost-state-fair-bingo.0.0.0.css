@@ -1,0 +1,24 @@
+/**
+ * Styles for: minnpost-state-fair-bingo
+ */
+/**
+ * Mixins for: minnpost-state-fair-bingo
+ */
+/**
+ * Main styles for: minnpost-state-fair-bingo
+ */
+body .node-unpublished {
+  background-repeat: no-repeat;
+}
+
+.mp .minnpost-state-fair-bingo-container {
+  padding-top: 4em;
+}
+.mp .minnpost-state-fair-bingo-container .pick {
+  text-align: right;
+  margin-bottom: 3em;
+}
+.mp .minnpost-state-fair-bingo-container .card {
+  min-height: 1300px;
+  margin-bottom: 3em;
+}

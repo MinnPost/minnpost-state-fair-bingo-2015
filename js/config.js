@@ -4,6 +4,9 @@
  */
 require.config({
   shim: {
+    imagesloaded: {
+      deps: ['jquery']
+    }
   },
   baseUrl: 'js',
   paths: {
@@ -12,6 +15,7 @@ require.config({
     'text': '../bower_components/text/text',
     'jquery': '../bower_components/jquery/dist/jquery',
     'underscore': '../bower_components/underscore/underscore',
+    'imagesloaded': '../bower_components/imagesloaded/imagesloaded.pkgd',
     'minnpost-state-fair-bingo': 'app'
   }
 });

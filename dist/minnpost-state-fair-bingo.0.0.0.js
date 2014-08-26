@@ -1,3 +1,125 @@
+
+/**
+ * Helpers functions such as formatters or extensions
+ * to libraries.
+ */
+define('helpers', ['jquery', 'underscore'],
+  function($, _) {
+
+  var helpers = {};
+
+  /**
+   * Override Backbone's ajax call to use JSONP by default as well
+   * as force a specific callback to ensure that server side
+   * caching is effective.
+   */
+  helpers.overrideBackboneAJAX = function() {
+    Backbone.ajax = function() {
+      var options = arguments;
+
+      if (options[0].dataTypeForce !== true) {
+        options[0].dataType = 'jsonp';
+        options[0].jsonpCallback = 'mpServerSideCachingHelper' +
+          _.hash(options[0].url);
+      }
+      return Backbone.$.ajax.apply(Backbone.$, options);
+    };
+  };
+
+  /**
+   * Returns version of MSIE.
+   */
+  helpers.isMSIE = function() {
+    var match = /(msie) ([\w.]+)/i.exec(navigator.userAgent);
+    return match ? parseInt(match[2], 10) : false;
+  };
+
+  /**
+   * Wrapper for a JSONP request, the first set of options are for
+   * the AJAX request, while the other are from the application.
+   */
+  helpers.jsonpRequest = function(requestOptions, appOptions) {
+    options.dataType = 'jsonp';
+    options.jsonpCallback = 'mpServerSideCachingHelper' +
+      _.hash(options.url);
+
+    if (appOptions.remoteProxy) {
+      options.url = options.url + '&callback=mpServerSideCachingHelper';
+      options.url = appOptions.remoteProxy + encodeURIComponent(options.url);
+      options.cache = true;
+    }
+
+    return $.ajax.apply($, [options]);
+  };
+
+  /**
+   * Data source handling.  For development, we can call
+   * the data directly from the JSON file, but for production
+   * we want to proxy for JSONP.
+   *
+   * `name` should be relative path to dataset
+   * `options` are app options
+   *
+   * Returns jQuery's defferred object.
+   */
+  helpers.getLocalData = function(name, options) {
+    var useJSONP = false;
+    var defers = [];
+    name = (_.isArray(name)) ? name : [ name ];
+
+    // If the data path is not relative, then use JSONP
+    if (options && options.paths && options.paths.data.indexOf('http') === 0) {
+      useJSONP = true;
+    }
+
+    // Go through each file and add to defers
+    _.each(name, function(d) {
+      var defer;
+
+      if (useJSONP) {
+        defer = helpers.jsonpRequest({
+          url: proxyPrefix + encodeURI(options.paths.data + d)
+        }, options);
+      }
+      else {
+        defer = $.getJSON(options.paths.data + d);
+      }
+      defers.push(defer);
+    });
+
+    return $.when.apply($, defers);
+  };
+
+  /**
+   * Reads query string and turns into object.
+   */
+  helpers.parseQueryString = function() {
+    var assoc  = {};
+    var decode = function(s) {
+      return decodeURIComponent(s.replace(/\+/g, " "));
+    };
+    var queryString = location.search.substring(1);
+    var keyValues = queryString.split('&');
+
+    _.each(keyValues, function(v, vi) {
+      var key = v.split('=');
+      if (key.length > 1) {
+        assoc[decode(key[0])] = decode(key[1]);
+      }
+    });
+
+    return assoc;
+  };
+
+  return helpers;
+});
+
+
+define('text!templates/application.underscore',[],function () { return '<div class="application-container">\n  <div class="message-container"></div>\n\n  <div class="content-container">\n\n    <div class="pick">\n      <button class="refresh button primary large" title="Pick another Bingo card."><i class="fa fa-refresh"></i></button>\n      <button class="print button primary large" title="Print out card."><i class="fa fa-print"></i></button>\n    </div>\n\n    <div class="card">\n      <div class="loading-container">\n        <i class="loading"></i> Loading...\n      </div>\n\n      <img src="<%= card %>" />\n    </div>\n\n  </div>\n\n  <div class="footnote-container">\n    <div class="footnote">\n      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo" target="_blank">Github</a>.</p>\n\n    </div>\n  </div>\n</div>\n';});
+
+
+define('text!templates/print-window.underscore',[],function () { return '<html>\n<head>\n  <title>Temporary Printing Window</title>\n\n  <script>\n    function step1() {\n      setTimeout(\'step2()\', 100);\n    }\n    function step2() {\n      window.print();\n      window.close();\n    }\n  </script>\n\n  <style>\n    * { margin: 0 !important; padding: 0 !important; }\n    html, body {\n      height:100%;\n      overflow: hidden;\n      background: #FFF;\n      font-size: 9.5pt;\n    }\n    img {\n      display: block;\n      max-width: 99%;\n      max-height: 99%;\n      margin: 0 auto !important;\n    }\n  </style>\n</head>\n<body onLoad="step1()">\n  <img src="<%= card %>"/>\n</body>\n</html>\n';});
+
 /**
  * Main application file for: minnpost-state-fair-bingo
  *
@@ -246,3 +368,4 @@ require(['jquery', 'minnpost-state-fair-bingo'], function($, App) {
     var app = new App();
   });
 });
+
