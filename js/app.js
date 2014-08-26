@@ -34,7 +34,7 @@ define('minnpost-state-fair-bingo', [
 
       // Add (absolute) paths to cards
       this.options.cards = _.map(this.options.cards, function(c, ci) {
-        var path = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        var path = (_.isObject(window.location)) ? window.location.protocol + '//' + window.location.host + window.location.pathname : 'http://localhost:8802/';
 
         c = thisApp.options.paths.images + c;
         if (c.indexOf('http') !== 0 && c.indexOf('//') !== 0) {
