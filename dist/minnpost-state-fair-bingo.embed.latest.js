@@ -1,9 +1,9 @@
 
-// Hack around existing jQuery
+// Hack around existing jQuery.  This method globbers old version.  :(
 if (typeof window.jQuery != 'undefined') {
-  window._jQuery = window.jQuery;
-  window._$ = window.$;
-}/**
+  window._prevjQuery = window.jQuery.noConflict();
+}
+/**
  * @license almond 0.2.9 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/almond for details
@@ -12097,7 +12097,7 @@ define("jquery", function(){});
  */
 
 (function () {
-	
+
 
 	/**
 	 * Class for managing events.
@@ -12646,14 +12646,14 @@ if ( typeof define === 'function' && define.amd ) {
  * MIT License
  */
 
-( function( window, factory ) { 
+( function( window, factory ) {
   // universal module definition
 
   /*global define: false, module: false, require: false */
 
   if ( typeof define === 'function' && define.amd ) {
     // AMD
-    define( 'imagesloaded',[
+    define( 'imagesLoaded',[
       'eventEmitter/EventEmitter',
       'eventie/eventie'
     ], function( EventEmitter, eventie ) {
@@ -13498,11 +13498,11 @@ define('text!templates/print-window.underscore',[],function () { return '<html>\
 
 // Create main application
 define('minnpost-state-fair-bingo', [
-  'jquery', 'underscore', 'imagesloaded', 'helpers',
+  'jquery', 'underscore', 'imagesLoaded', 'helpers',
   'text!templates/application.underscore',
   'text!templates/print-window.underscore'
 ], function(
-  $, _, imagesloaded, helpers, tApplication, tPrint
+  $, _, imagesLoaded, helpers, tApplication, tPrint
   ) {
 
   // Constructor for app
@@ -13519,6 +13519,9 @@ define('minnpost-state-fair-bingo', [
     // Start function
     start: function() {
       var thisApp = this;
+
+      // For whatever reason imagesloaded is not finding jQuery
+      // when used in build, so we use it without jQuery
 
       // Add (absolute) paths to cards
       this.options.cards = _.map(this.options.cards, function(c, ci) {
@@ -13560,7 +13563,7 @@ define('minnpost-state-fair-bingo', [
     imageLoaded: function() {
       var thisApp = this;
 
-      this.$('.card img').imagesLoaded().always(function(i) {
+      imagesLoaded(this.$('.card img'), function(i) {
         thisApp.$('.card img').fadeIn('fast');
         thisApp.$('.card .loading-container').slideUp('fast');
       });
@@ -13742,6 +13745,6 @@ require(['jquery', 'minnpost-state-fair-bingo'], function($, App) {
 
 // Hack back in the original jQuery
 if (typeof window._jQuery != 'undefined') {
-  window.jQuery = window._jQuery;
-  window.$ = window._$;
+  window.jQuery = window._prevjQuery;
+  window.$ = window._prevjQuery;
 }

@@ -7,11 +7,11 @@
 
 // Create main application
 define('minnpost-state-fair-bingo', [
-  'jquery', 'underscore', 'imagesloaded', 'helpers',
+  'jquery', 'underscore', 'imagesLoaded', 'helpers',
   'text!templates/application.underscore',
   'text!templates/print-window.underscore'
 ], function(
-  $, _, imagesloaded, helpers, tApplication, tPrint
+  $, _, imagesLoaded, helpers, tApplication, tPrint
   ) {
 
   // Constructor for app
@@ -28,6 +28,9 @@ define('minnpost-state-fair-bingo', [
     // Start function
     start: function() {
       var thisApp = this;
+
+      // For whatever reason imagesloaded is not finding jQuery
+      // when used in build, so we use it without jQuery
 
       // Add (absolute) paths to cards
       this.options.cards = _.map(this.options.cards, function(c, ci) {
@@ -69,7 +72,7 @@ define('minnpost-state-fair-bingo', [
     imageLoaded: function() {
       var thisApp = this;
 
-      this.$('.card img').imagesLoaded().always(function(i) {
+      imagesLoaded(this.$('.card img'), function(i) {
         thisApp.$('.card img').fadeIn('fast');
         thisApp.$('.card .loading-container').slideUp('fast');
       });

@@ -1,6 +1,5 @@
 
-// Hack around existing jQuery
+// Hack around existing jQuery.  This method globbers old version.  :(
 if (typeof window.jQuery != 'undefined') {
-  window._jQuery = window.jQuery;
-  window._$ = window.$;
+  window._prevjQuery = window.jQuery.noConflict();
 }
