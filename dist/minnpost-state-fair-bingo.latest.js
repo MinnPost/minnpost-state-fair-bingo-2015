@@ -115,7 +115,7 @@ define('helpers', ['jquery', 'underscore'],
 });
 
 
-define('text!templates/application.underscore',[],function () { return '<div class="application-container">\n  <div class="message-container"></div>\n\n  <div class="content-container">\n\n    <div class="pick">\n      <button class="refresh button primary large" title="Pick another Bingo card."><i class="fa fa-refresh"></i></button>\n      <button class="print button primary large" title="Print out card."><i class="fa fa-print"></i></button>\n    </div>\n\n    <div class="card">\n      <div class="loading-container">\n        <i class="loading"></i> Loading...\n      </div>\n\n      <img src="<%= card %>" />\n    </div>\n\n  </div>\n\n  <div class="footnote-container">\n    <div class="footnote">\n      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo" target="_blank">Github</a>.</p>\n\n    </div>\n  </div>\n</div>\n';});
+define('text!templates/application.underscore',[],function () { return '<div class="application-container">\n  <div class="message-container"></div>\n\n  <div class="content-container">\n\n    <div class="pick">\n      <button class="refresh button primary large" title="Pick another Bingo card."><i class="fa fa-refresh"></i></button>\n      <button class="print button primary large" title="Print out card."><i class="fa fa-print"></i></button>\n    </div>\n\n    <div class="card">\n      <div class="loading-container">\n        <i class="loading"></i> Loading...\n      </div>\n      \n      <img src="<%= card %>" alt="Bingo card" />\n    </div>\n\n    <p class="caption">If you are having trouble printing using the button above, <a class="manual-print" href="<%= card %>" target="_blank">open the bingo card</a> in a separate window and print from there.</p>\n\n  </div>\n\n  <div class="footnote-container">\n    <div class="footnote">\n      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo" target="_blank">Github</a>.</p>\n\n    </div>\n  </div>\n</div>\n';});
 
 
 define('text!templates/print-window.underscore',[],function () { return '<html>\n<head>\n  <title>Temporary Printing Window</title>\n\n  <script>\n    function step1() {\n      setTimeout(\'step2()\', 100);\n    }\n    function step2() {\n      window.print();\n      window.close();\n    }\n  </script>\n\n  <style>\n    * { margin: 0 !important; padding: 0 !important; }\n    html, body {\n      height:100%;\n      overflow: hidden;\n      background: #FFF;\n      font-size: 9.5pt;\n    }\n    img {\n      display: block;\n      max-width: 99%;\n      max-height: 99%;\n      margin: 0 auto !important;\n    }\n  </style>\n</head>\n<body onLoad="step1()">\n  <img src="<%= card %>"/>\n</body>\n</html>\n';});
@@ -156,9 +156,11 @@ define('minnpost-state-fair-bingo', [
 
       // Add (absolute) paths to cards
       this.options.cards = _.map(this.options.cards, function(c, ci) {
+        var path = (_.isObject(window.location)) ? window.location.protocol + '//' + window.location.host + window.location.pathname : 'http://localhost:8802/';
+
         c = thisApp.options.paths.images + c;
         if (c.indexOf('http') !== 0 && c.indexOf('//') !== 0) {
-          c = window.location.origin + window.location.pathname + c;
+          c = path + c;
         }
         return c;
       });
@@ -180,6 +182,7 @@ define('minnpost-state-fair-bingo', [
         e.preventDefault();
         thisApp.readyImageLoad();
         thisApp.$('.card img').fadeOut().attr('src', thisApp.newCard());
+        thisApp.$('.manual-print').attr('href', thisApp.$('.card img').attr('src'));
         thisApp.imageLoaded();
       });
 
@@ -209,6 +212,9 @@ define('minnpost-state-fair-bingo', [
     newCard: function() {
       var card;
       var oldCard = this.card || this.options.cards[0];
+      // iOS has a hard image size limit
+      var extension = (this.options.capabilities.cannotLoadLargeImages) ?
+        '-small.png' : '.png';
 
       if (this.options.cards.length > 1) {
         do {
@@ -220,7 +226,8 @@ define('minnpost-state-fair-bingo', [
         card = oldCard;
       }
 
-      this.card =  card;
+      card = card + extension;
+      this.card = card;
       return card;
     },
 
@@ -239,13 +246,17 @@ define('minnpost-state-fair-bingo', [
     defaultOptions: {
       projectName: 'minnpost-state-fair-bingo',
       cards: [
-        'minnpost-state-fair-bingo-card-01.png',
-        'minnpost-state-fair-bingo-card-02.png',
-        'minnpost-state-fair-bingo-card-03.png',
-        'minnpost-state-fair-bingo-card-04.png'
+        'minnpost-state-fair-bingo-card-01',
+        'minnpost-state-fair-bingo-card-02',
+        'minnpost-state-fair-bingo-card-03',
+        'minnpost-state-fair-bingo-card-04'
       ],
       remoteProxy: null,
       el: '.minnpost-state-fair-bingo-container',
+      capabilities: {
+        cannotLoadLargeImages: _.isObject(navigator) ?
+          /(iPad|iPhone|iPod)/g.test(navigator.userAgent) : false
+      },
       availablePaths: {
         local: {
           css: ['.tmp/css/main.css'],
