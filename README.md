@@ -1,4 +1,4 @@
-# Minnpost State Fair Bingo
+# Minnpost State Fair Bingo, 2015 edition
 
 State Fair Bingo!  Drawings by Andy Sturdevant; compiled by Kaeti Hinck.
 
