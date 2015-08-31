@@ -1,13 +1,13 @@
 {
-  "name": "minnpost-state-fair-bingo",
+  "name": "minnpost-state-fair-bingo-2015",
   "version": "0.0.0",
   "main": "index.html",
-  "homepage": "https://github.com/minnpost/minnpost-state-fair-bingo",
+  "homepage": "https://github.com/minnpost/minnpost-state-fair-bingo-2015",
   "repository": {
     "type": "git",
-    "url": "https://github.com/minnpost/minnpost-state-fair-bingo"
+    "url": "https://github.com/minnpost/minnpost-state-fair-bingo-2015"
   },
-  "bugs": "https://github.com/minnpost/minnpost-state-fair-bingo/issues",
+  "bugs": "https://github.com/minnpost/minnpost-state-fair-bingo-2015/issues",
   "license": "MIT",
   "author": {
     "name": "MinnPost",
