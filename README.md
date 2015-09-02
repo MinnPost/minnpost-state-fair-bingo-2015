@@ -1,8 +1,10 @@
 # Minnpost State Fair Bingo, 2015 edition
 
-State Fair Bingo!  Drawings by Andy Sturdevant; compiled by Kaeti Hinck.
+State Fair T-Shirt Bingo, updated for 2015!  Drawings by Andy Sturdevant; compiled by Tom Nehil.
 
-You can see this project in action at *[published story link goes here]()*.
+You can see this project in action at *[Minnesota State Fair T-shirt bingo, 2015 edition](http://www.minnpost.com/stroll/2015/09/minnesota-state-fair-t-shirt-bingo-2015-edition)*.
+
+The original version, from 2014, lives at *[Minnesota State Fair T-shirt bingo](http://www.minnpost.com/stroll/2014/08/minnesota-state-fair-t-shirt-bingo)*. And you can [check out the repo](https://github.com/MinnPost/minnpost-state-fair-bingo), which looks a lot like this one.
 
 *Unless otherwise noted, MinnPost projects on [Github](https://github.com/minnpost) are story-driven and meant for transparency sake and not focused on re-use.  For a list of our more reusable projects, go to [code.minnpost.com](http://code.minnpost.com).*
 
