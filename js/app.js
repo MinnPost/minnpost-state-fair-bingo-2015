@@ -6,7 +6,7 @@
  */
 
 // Create main application
-define('minnpost-state-fair-bingo', [
+define('minnpost-state-fair-bingo-2015', [
   'jquery', 'underscore', 'imagesLoaded', 'helpers',
   'text!templates/application.underscore',
   'text!templates/print-window.underscore'
@@ -122,7 +122,7 @@ define('minnpost-state-fair-bingo', [
 
     // Default options
     defaultOptions: {
-      projectName: 'minnpost-state-fair-bingo',
+      projectName: 'minnpost-state-fair-bingo-2015',
       cards: [
         'minnpost-state-fair-bingo-card-01',
         'minnpost-state-fair-bingo-card-02',
@@ -130,7 +130,7 @@ define('minnpost-state-fair-bingo', [
         'minnpost-state-fair-bingo-card-04'
       ],
       remoteProxy: null,
-      el: '.minnpost-state-fair-bingo-container',
+      el: '.minnpost-state-fair-bingo-2015-container',
       capabilities: {
         cannotLoadLargeImages: _.isObject(navigator) ?
           /(iPad|iPhone|iPod)/g.test(navigator.userAgent) : false
@@ -144,12 +144,12 @@ define('minnpost-state-fair-bingo', [
         build: {
           css: [
             '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css',
-            'dist/minnpost-state-fair-bingo.libs.min.css',
-            'dist/minnpost-state-fair-bingo.latest.min.css'
+            'dist/minnpost-state-fair-bingo-2015.libs.min.css',
+            'dist/minnpost-state-fair-bingo-2015.latest.min.css'
           ],
           ie: [
-            'dist/minnpost-state-fair-bingo.libs.min.ie.css',
-            'dist/minnpost-state-fair-bingo.latest.min.ie.css'
+            'dist/minnpost-state-fair-bingo-2015.libs.min.ie.css',
+            'dist/minnpost-state-fair-bingo-2015.latest.min.ie.css'
           ],
           images: 'dist/images/',
           data: 'dist/data/'
@@ -157,15 +157,15 @@ define('minnpost-state-fair-bingo', [
         deploy: {
           css: [
             '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css',
-            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/minnpost-state-fair-bingo.libs.min.css',
-            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/minnpost-state-fair-bingo.latest.min.css'
+            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/minnpost-state-fair-bingo-2015.libs.min.css',
+            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/minnpost-state-fair-bingo-2015.latest.min.css'
           ],
           ie: [
-            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/minnpost-state-fair-bingo.libs.min.ie.css',
-            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/minnpost-state-fair-bingo.latest.min.ie.css'
+            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/minnpost-state-fair-bingo-2015.libs.min.ie.css',
+            'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/minnpost-state-fair-bingo-2015.latest.min.ie.css'
           ],
-          images: 'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/images/',
-          data: 'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo/data/'
+          images: 'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/images/',
+          data: 'https://s3.amazonaws.com/data.minnpost/projects/minnpost-state-fair-bingo-2015/data/'
         }
       }
     },
@@ -256,7 +256,7 @@ define('minnpost-state-fair-bingo', [
 /**
  * Run application
  */
-require(['jquery', 'minnpost-state-fair-bingo'], function($, App) {
+require(['jquery', 'minnpost-state-fair-bingo-2015'], function($, App) {
   $(document).ready(function() {
     var app = new App();
   });

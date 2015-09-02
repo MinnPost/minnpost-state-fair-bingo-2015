@@ -16,6 +16,6 @@ require.config({
     'jquery': '../bower_components/jquery/dist/jquery',
     'underscore': '../bower_components/underscore/underscore',
     'imagesLoaded': '../bower_components/imagesloaded/imagesloaded.pkgd',
-    'minnpost-state-fair-bingo': 'app'
+    'minnpost-state-fair-bingo-2015': 'app'
   }
 });

@@ -12,7 +12,7 @@
       <div class="loading-container">
         <i class="loading"></i> Loading...
       </div>
-      
+
       <img src="<%= card %>" alt="Bingo card" />
     </div>
 
@@ -22,7 +22,7 @@
 
   <div class="footnote-container">
     <div class="footnote">
-      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo" target="_blank">Github</a>.</p>
+      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-state-fair-bingo-2015" target="_blank">Github</a>.</p>
 
     </div>
   </div>

@@ -3,7 +3,7 @@
 // to maintain a single HTML file for testing.
 
 (function() {
-  var projectName = 'minnpost-state-fair-bingo';
+  var projectName = 'minnpost-state-fair-bingo-2015';
 
   // Parse query string
   var parseQueryString = function() {
